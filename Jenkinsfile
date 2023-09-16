@@ -20,7 +20,7 @@ pipeline {
 			}}
 			stage('Container creation'){
 		    steps {
-			sh 'docker run -it -d --name=container-pipeline swapnilhub/pipelineimage2 /bin/bash'
+			sh 'docker run -it -d --name=container-pipeline1.1 swapnilhub/pipelineimage2 /bin/bash'
 			}}
 			stage('Slack NOtification'){
 		    steps {
