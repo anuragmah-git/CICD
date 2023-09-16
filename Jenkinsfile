@@ -16,10 +16,15 @@ pipeline {
 			}}
 			stage('Docker build'){
 		    steps {
-			sh 'docker build -t swapnilhub/pipelineimage1 .'
+			sh 'docker build -t swapnilhub/pipelineimage2 .'
 			}}
 			stage('Container creation'){
 		    steps {
-			sh 'docker run -it -d --name=container-pipeline swapnilhub/pipelineimage1 /bin/bash'
-			}}	
+			sh 'docker run -it -d --name=container-pipeline swapnilhub/pipelineimage2 /bin/bash'
+			}}
+			stage('Slack NOtification'){
+		    steps {
+			slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#slack-notification', color: 'good', message: 'Welcome to Jenkins!', teamDomain: 'devops', tokenCredentialId: 'slack-notifiy'
+			}}
+				
 }}
