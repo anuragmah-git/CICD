@@ -12,6 +12,18 @@ pipeline {
 	                 }}
 		stage('Deployment'){
 		   steps {
-		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
+			script {
+			 if (env.BRANCH_NAME == 'master') 
+                        {
+                        echo 'Hello from master branch'
+                        }
+                    	if (env.BRANCH_NAME == 'null') 
+                        {
+                        echo 'Hello from null branch'
+                        }
+                    	else {
+                        sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
+                        }
+                    
 			}}	
 }}
