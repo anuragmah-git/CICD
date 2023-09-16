@@ -17,5 +17,9 @@ pipeline {
 			stage('Docker build'){
 		    steps {
 			sh 'docker build -t swapnilhub/pipelineimage1 .'
+			}}
+			stage('Container creation'){
+		    steps {
+			sh 'docker run -it -d --name=container-pipeline swapnilhub/pipelineimage1 /bin/bash'
 			}}	
 }}
