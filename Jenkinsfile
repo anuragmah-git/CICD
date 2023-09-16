@@ -1,7 +1,6 @@
 pipeline {
-	agent{
-	label 'Mens-slave'
-	}
+	agent any
+	
 	stages {
 	    stage('Checkout') {
 	        steps {
@@ -9,10 +8,14 @@ pipeline {
 		      }}
 		stage('Build') {
 	           steps {
-			  sh '/home/grras/slave-data/apache-maven-3.9.4/bin/mvn install'
+			  sh '/home/swapnil/Documents/DevOps-Software/apache-maven-3.9.4/bin/mvn install'
 	                 }}
 		stage('Deployment'){
 		    steps {
-			sh 'cp target/CICD.war /home/grras/slave-data/apache-tomcat-9.0.79/webapps'
+			sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
+			}}
+			stage('Docker build'){
+		    steps {
+			sh 'docker build -t swapnilhub/pipelineimage11.1.2 .'
 			}}	
 }}
