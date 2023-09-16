@@ -20,7 +20,7 @@ pipeline {
         	sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
         	echo "deployment has been done on QA!"
 			 }
-			else  ( env.ENVIRONMENT == 'UAT' ){
+			else ( env.ENVIRONMENT == 'UAT' ){
     		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
     		echo "deployment has been done on UAT!"
 			}
