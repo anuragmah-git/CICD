@@ -25,5 +25,5 @@ pipeline {
                         sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
                         }
                     
-			}}	
+			}}}	
 }}
