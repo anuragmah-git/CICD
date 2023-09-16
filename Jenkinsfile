@@ -24,5 +24,8 @@ pipeline {
     		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
     		echo "deployment has been done on UAT!"
 			}
+			echo "deployment has been done!"
+			fi
+			
 			}}}	
 }}
