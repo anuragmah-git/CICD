@@ -1,6 +1,6 @@
 pipeline {
-	agent any
-	
+	agent{
+	label 'Mens-slave'
 	stages {
 	    stage('Checkout') {
 	        steps {
@@ -8,7 +8,7 @@ pipeline {
 		      }}
 		stage('Build') {
 	           steps {
-			  sh '/home/swapnil/Documents/DevOps-Software/apache-maven-3.9.4/bin/mvn install'
+			  sh '/home/grras/slave-data/apache-maven-3.9.4/bin/mvn install'
 	                 }}
 		stage('Deployment'){
 		    steps {
