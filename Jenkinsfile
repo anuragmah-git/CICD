@@ -20,7 +20,7 @@ pipeline {
 		   steps {
 			script {
 			 if ( env.ENVIRONMENT == 'QA' ){
-        	sh 'sshpass -p "dev" scp target/CICD.war grras@172.17.0.2:/home/grras/appfiles/apache-tomcat-9.0.79/webapps'
+        	sshpass -p "dev" scp target/CICD.war grras@172.17.0.2:/home/grras/appfiles/apache-tomcat-9.0.79/webapps
         	echo "deployment has been done on QA!"
 			 }
 			elif ( env.ENVIRONMENT == 'UAT' ){
