@@ -5,7 +5,7 @@ pipeline {
   pollSCM '* * * * *'
 }
 	parameters {
-  choice choices: ['DEV', 'QA', 'UAT'], name: 'environment'
+  choice choices: ['DEV', 'QA', 'UAT'], name: 'ENVIRONMENT'
 }
 	stages {
 	    stage('Checkout') {
