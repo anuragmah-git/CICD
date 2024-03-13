@@ -18,11 +18,11 @@ pipeline {
 	                 }}
 		stage('Deployment'){
 		   steps {
-		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
-			}}
-		stage('slack-notification'){
-		   steps {
-		     
-		     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#devops', color: 'good', message: 'This is for test with slack notify', teamDomain: 'student', tokenCredentialId: 'slacktest'
-		     }}	
+		if [ $ENVIRONMENT = "QA" ];then
+        		sshpass -p "dev" scp target/CICD.war grras@172.17.0.2:/home/grras/appfiles/apache-tomcat-9.0.79/webapps
+		elif  [ $ENVIRONMENT = "UAT" ];then
+         		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
+			sh 'echo "deployment has been done!"'
+		fi
+			}}	
 }}
