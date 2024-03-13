@@ -13,6 +13,6 @@ pipeline {
 	                 }}
 		stage('Deployment'){
 		    steps {
-			sh 'cp target/flipkart.war /home/grras/appfiles/apache-tomcat-9.0.79/webapps'
+			sh 'cp target/CICD.war /home/grras/appfiles/apache-tomcat-9.0.79/webapps'
 			}}	
 }}
