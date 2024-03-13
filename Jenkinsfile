@@ -18,11 +18,16 @@ pipeline {
 	                 }}
 		stage('Deployment'){
 		   steps {
-		if [ $ENVIRONMENT = "QA" ];then
-        		sshpass -p "dev" scp target/CICD.war grras@172.17.0.2:/home/grras/appfiles/apache-tomcat-9.0.79/webapps
-		elif  [ $ENVIRONMENT = "UAT" ];then
-         		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
-			sh 'echo "deployment has been done!"'
-		fi
-			}}	
+			script {
+			 if ( env.ENVIRONMENT == 'QA' ){
+        	sh 'sshpass -p "dev" scp target/CICD.war grras@172.17.0.2:/home/grras/appfiles/apache-tomcat-9.0.79/webapps'
+        	echo "deployment has been done on QA!"
+			 }
+			elif ( env.ENVIRONMENT == 'UAT' ){
+    		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
+    		echo "deployment has been done on UAT!"
+			}
+			echo "deployment has been done!"
+			fi
+			}}}	
 }}
