@@ -1,12 +1,6 @@
 pipeline {
-	agent any 
+	agent any
 	
-	triggers {
-  pollSCM '* * * * *'
-}
-	parameters {
-  choice choices: ['DEV', 'QA', 'UAT'], name: 'environment'
-}
 	stages {
 	    stage('Checkout') {
 	        steps {
@@ -17,12 +11,15 @@ pipeline {
 			  sh '/home/swapnil/Documents/DevOps-Software/apache-maven-3.9.4/bin/mvn install'
 	                 }}
 		stage('Deployment'){
-		   steps {
-		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
+		    steps {
+			sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
 			}}
-		stage('slack-notification'){
-		   steps {
-		     
-		     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#devops', color: 'good', message: 'This is for test', teamDomain: 'student', tokenCredentialId: 'slacktest'
-		     }}	
+			stage('Docker build'){
+		    steps {
+			sh 'docker build -t swapnilhub/pipelineimage1 .'
+			}}
+			stage('Container creation'){
+		    steps {
+			sh 'docker run -it -d --name=container-pipeline swapnilhub/pipelineimage1 /bin/bash'
+			}}	
 }}
