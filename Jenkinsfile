@@ -16,10 +16,10 @@ pipeline {
 			}}
 			stage('Docker build'){
 		    steps {
-			sh 'docker build -t swapnilhub/pipelineimage2 .'
+			sh 'docker build -t swapnilhub/pipelineimage3 .'
 			}}
 			stage('Container creation'){
 		    steps {
-			sh 'docker run -it -d --name=container-pipe swapnilhub/pipelineimage2 /bin/bash'
+			sh 'docker run -it -d --name=container-pipe1 swapnilhub/pipelineimage3 /bin/bash'
 			}}	
 }}
